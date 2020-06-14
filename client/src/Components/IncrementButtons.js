@@ -9,8 +9,8 @@ const IncrementButtons = ({ onClick }) => {
     <div className="col-12">
       <Swipe onChange={(value) => setAmount(value)} />
       <div className="row">
-        <Button onClick={() => onClick(amount)} className="right" symbol="+" />
-        <Button onClick={() => onClick(-amount)} symbol="-" />
+        <Button onClick={() => onClick(-amount)} className="right" symbol="-" />
+        <Button onClick={() => onClick(amount)} symbol="+" />
       </div>
     </div>
   )
