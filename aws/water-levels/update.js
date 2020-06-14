@@ -9,7 +9,7 @@ module.exports.update = (event, context, callback) => {
   const data = JSON.parse(event.body);
 
   // validating the received object
-  if (typeof data.level !== 'number' || typeof data.maxLevel !== 'number') {
+  if (typeof data.level !== 'number' || typeof data.targetLevel !== 'number') {
     console.error('Validation Failed');
     callback(null, {
       statusCode: 400,
@@ -57,14 +57,14 @@ function createParams(id, data) {
     },
     ExpressionAttributeNames: {
       '#water_level': 'level',
-      '#max_level': 'maxLevel',
+      '#target_level': 'targetLevel',
     },
     ExpressionAttributeValues: {
       ':level': data.level,
-      ':maxLevel': data.maxLevel,
+      ':targetLevel': data.targetLevel,
       ':updatedAt': timestamp,
     },
-    UpdateExpression: 'SET #water_level = :level, #max_level = :maxLevel, updatedAt = :updatedAt',
+    UpdateExpression: 'SET #water_level = :level, #target_level = :targetLevel, updatedAt = :updatedAt',
     ReturnValues: 'ALL_NEW',
   };
 }

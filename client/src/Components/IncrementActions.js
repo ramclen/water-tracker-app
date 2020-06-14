@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Swipe from './Swipe'
+import Swipe from './SwipeAmount'
 import Button from './Button'
 import { Col, Row } from 'react-bootstrap';
 
-const IncrementButtons = ({ onClick }) => {
+const IncrementActions = ({ onClick }) => {
   const [amount, setAmount] = useState(150);
 
   return (
@@ -17,4 +17,4 @@ const IncrementButtons = ({ onClick }) => {
   )
 }
 
-export default IncrementButtons
+export default IncrementActions

@@ -6,13 +6,19 @@ import { Col, Row } from 'react-bootstrap';
 import './body.css';
 let previousTotalDrink;
 
-const Body = ({ totalDrink, maxValue, maxValueChange }) => {
+/**
+ * it renders the body section and the modal to edit the maximum value
+ * @param  {number} totalDrink
+ * @param  {number} targetValue
+ * @param  {function} targetValueChange
+ */
+const Body = ({ totalDrink, targetValue, targetValueChange }) => {
   const [open, setOpen] = useState(false);
   const [percentage, setPercentage] = useState(totalDrink);
 
   const percentageIncreaseAnimation = () => {
-    // Increment is dependant on the max value to keep speed if maxValue change
-    previousTotalDrink += Math.floor(25000 / maxValue);
+    // Increment is dependant on the target value to keep speed if targetValue change
+    previousTotalDrink += Math.floor(25000 / targetValue);
 
     if (totalDrink > previousTotalDrink) {
       setPercentage(calculateWaterPercentage(previousTotalDrink))
@@ -23,8 +29,8 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
   }
 
   const percentageDecreaseAnimation = () => {
-    // Decrease is dependant on the max value to keep speed if maxValue change
-    previousTotalDrink -= Math.floor(25000 / maxValue);
+    // Decrease is dependant on the target value to keep speed if targetValue change
+    previousTotalDrink -= Math.floor(25000 / targetValue);
 
     if (totalDrink <= previousTotalDrink) {
       setPercentage(calculateWaterPercentage(previousTotalDrink))
@@ -48,28 +54,33 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
     }
   }, [totalDrink])
 
-  const updateMaxValue = value => {
-    maxValueChange(parseInt(value))
+  const updateTargetValue = value => {
+    targetValueChange(parseInt(value))
     setOpen(false);
   }
 
-
-
+  /**
+   * it returns the percentage of value passed by params to the target water level
+   * @param  {number} value
+   */
   const calculateWaterPercentage = (value) => {
-    if (maxValue === 0) {
+    if (targetValue === 0) {
       return 100;
     }
-    return (value * 100) / maxValue
+    return (value * 100) / targetValue
   }
 
+  /**
+   * it renders the modal to edit target level. if 'open' value is true returns the modal or else it returns null 
+   */
   const renderModal = () => {
     if (open) {
       return (
         <EditMaxLevelModal
-          value={maxValue}
+          value={targetValue}
           open={open}
           onClose={() => setOpen(false)}
-          onUpdate={updateMaxValue}
+          onUpdate={updateTargetValue}
         />
       )
     }
@@ -83,7 +94,7 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
         <BodyProgress percentage={percentage} />
       </Col>
       <Col xs={3} className="max-value-text">
-        {maxValue / 1000} L
+        {targetValue / 1000} L
         <GoPencil className="editButton" onClick={() => setOpen(true)} />
       </Col>
     </Row>

@@ -2,23 +2,23 @@ import React from 'react';
 import TotalWater from './TotalWater'
 import Achivements from './Achivements';
 import Body from './Body'
-import Sentence from './Sentence'
-import IncrementButtons from './IncrementButtons';
+import IncrementActions from './IncrementActions';
 import aws from '../api/aws';
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 class App extends React.Component {
   state = {
     id: 0,
     level: 0,
-    maxLevel: 0
+    targetLevel: 0
   }
 
   componentDidMount() {
     aws.get('water-levels').then(result => {
       this.setState(result.data)
+    }).catch(e => {
+      console.error('Error requesting water-levels: ', e)
     })
-    // TODO: Control errors 
   }
 
   executeNewAmount = (amount) => {
@@ -27,12 +27,16 @@ class App extends React.Component {
       level = 0;
     }
     this.setState({ level });
-    aws.put(`water-levels/${this.state.id}`, { level: this.state.level, maxLevel: this.state.maxLevel })
+    aws.put(`water-levels/${this.state.id}`, { level: this.state.level, targetLevel: this.state.targetLevel }).catch(e => {
+      console.error('Error requesting an update for a level change: ', e)
+    })
   }
 
-  maxValueChange = (maxLevel) => {
-    this.setState({ maxLevel })
-    aws.put(`water-levels/${this.state.id}`, { level: this.state.level, maxLevel: this.state.maxLevel })
+  targetValueChange = (targetLevel) => {
+    this.setState({ targetLevel })
+    aws.put(`water-levels/${this.state.id}`, { level: this.state.level, targetLevel: this.state.targetLevel }).catch(e => {
+      console.error('Error requesting an update for a target value change: ', e)
+    })
   }
 
   render() {
@@ -44,14 +48,14 @@ class App extends React.Component {
         </Row>
         <Body
           totalDrink={this.state.level}
-          maxValue={this.state.maxLevel}
-          maxValueChange={this.maxValueChange}
+          targetValue={this.state.targetLevel}
+          targetValueChange={this.targetValueChange}
         />
         <Row>
-          <Sentence />
+          <Col xs={12} className="sentence"> Nice work! Keep it up!</Col>
         </Row>
         <Row>
-          <IncrementButtons onClick={this.executeNewAmount} />
+          <IncrementActions onClick={this.executeNewAmount} />
         </Row>
       </div>
     );

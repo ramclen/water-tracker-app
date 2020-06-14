@@ -59,7 +59,7 @@ function createNewLevel(callback) {
     Item: {
       id: uuid.v1(),
       level: 0,
-      maxLevel: 3500,
+      targetLevel: 3500,
       createdAt: timestamp,
       updatedAt: timestamp,
     },
