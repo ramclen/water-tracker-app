@@ -9,6 +9,30 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
   const [open, setOpen] = useState(false);
   const [percentage, setPercentage] = useState(totalDrink);
 
+  const percentageIncreaseAnimation = () => {
+    // Increment is dependant on the max value to keep speed if maxValue change
+    previousTotalDrink += Math.floor(25000 / maxValue);
+
+    if (totalDrink > previousTotalDrink) {
+      setPercentage(calculateWaterPercentage(previousTotalDrink))
+      requestAnimationFrame(percentageIncreaseAnimation);
+    } else {
+      previousTotalDrink = totalDrink
+    }
+  }
+
+  const percentageDecreaseAnimation = () => {
+    // Decrease is dependant on the max value to keep speed if maxValue change
+    previousTotalDrink -= Math.floor(25000 / maxValue);
+
+    if (totalDrink <= previousTotalDrink) {
+      setPercentage(calculateWaterPercentage(previousTotalDrink))
+      requestAnimationFrame(percentageDecreaseAnimation);
+    } else {
+      previousTotalDrink = totalDrink
+    }
+  }
+
   useEffect(() => {
     // initialize previous previous total drink 
     previousTotalDrink = totalDrink;
@@ -16,7 +40,11 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
 
   useEffect(() => {
     // Increasing percentage gradually to show an animation
-    percentageIncreaseAnimation();
+    if (totalDrink > previousTotalDrink) {
+      percentageIncreaseAnimation();
+    } else {
+      percentageDecreaseAnimation()
+    }
   }, [totalDrink])
 
   const updateMaxValue = value => {
@@ -24,17 +52,7 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
     setOpen(false);
   }
 
-  const percentageIncreaseAnimation = () => {
-    // Increment is dependant on the max value to keep speed if maxValue change
-    previousTotalDrink += (25000 / maxValue);
-    setPercentage(calculateWaterPercentage(previousTotalDrink))
 
-    if (totalDrink > previousTotalDrink) {
-      requestAnimationFrame(percentageIncreaseAnimation);
-    } else {
-      previousTotalDrink = totalDrink
-    }
-  }
 
   const calculateWaterPercentage = (value) => {
     if (maxValue === 0) {
