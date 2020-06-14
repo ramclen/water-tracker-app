@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Button = (props) => {
+const Button = ({ onClick, symbol, className }) => {
   return (
-    <div className={`col-6 ${props.class}`}>
-      <button className="button">{props.symbol}</button>
+    <div className={`col-6 ${className}`}>
+      <button onClick={onClick} className="button">{symbol}</button>
     </div>
   )
 }

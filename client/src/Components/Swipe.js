@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Carousel } from 'react-bootstrap';
 
-const Swipe = () => {
+const Swipe = ({ onChange }) => {
   const values = [150, 250, 350];
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
+    onChange(values[selectedIndex])
     setIndex(selectedIndex);
-    console.log(values[selectedIndex])
   };
 
   return (
