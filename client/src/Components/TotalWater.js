@@ -1,11 +1,12 @@
 import React from 'react'
+import { Col } from 'react-bootstrap'
 
 const TotalWater = ({ total }) => {
   return (
-    <div className="col-6">
+    <Col xs={6}>
       <h1>{total / 1000} L</h1>
       <p className="subText">Total water drunk</p>
-    </div>
+    </Col>
   )
 }
 

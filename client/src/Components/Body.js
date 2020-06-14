@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import EditMaxLevelModal from "./EditMaxLevelModal";
 import BodyProgress from './BodyProgress';
 import { GoPencil } from "react-icons/go";
+import { Col, Row } from 'react-bootstrap';
 import './body.css';
 let previousTotalDrink;
 
@@ -76,16 +77,16 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
   }
 
   return (
-    <div className="row manBody">
+    <Row className="manBody">
       {renderModal()}
-      <div className="col-6 offset-3 body-box" >
+      <Col xs={{ span: 6, offset: 3 }} className="body-box" >
         <BodyProgress percentage={percentage} />
-      </div>
-      <div className="col-3 max-value-text">
+      </Col>
+      <Col xs={3} className="max-value-text">
         {maxValue / 1000} L
         <GoPencil className="editButton" onClick={() => setOpen(true)} />
-      </div>
-    </div >
+      </Col>
+    </Row>
   )
 }
 

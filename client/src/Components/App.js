@@ -5,6 +5,7 @@ import Body from './Body'
 import Sentence from './Sentence'
 import IncrementButtons from './IncrementButtons';
 import aws from '../api/aws';
+import { Row } from 'react-bootstrap';
 
 class App extends React.Component {
   state = {
@@ -37,21 +38,21 @@ class App extends React.Component {
   render() {
     return (
       <div className="container-fluid app">
-        <div className="row header">
+        <Row className="header">
           <TotalWater total={this.state.level} />
           <Achivements />
-        </div>
+        </Row>
         <Body
           totalDrink={this.state.level}
           maxValue={this.state.maxLevel}
           maxValueChange={this.maxValueChange}
         />
-        <div className="row">
+        <Row>
           <Sentence />
-        </div>
-        <div className="row">
+        </Row>
+        <Row>
           <IncrementButtons onClick={this.executeNewAmount} />
-        </div>
+        </Row>
       </div>
     );
   }

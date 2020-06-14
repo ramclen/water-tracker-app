@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Row, Col } from 'react-bootstrap';
 
 const Swipe = ({ onChange }) => {
   const values = [150, 250, 350];
@@ -11,8 +11,8 @@ const Swipe = ({ onChange }) => {
   };
 
   return (
-    <div className="row">
-      <div className="col-12 swipe">
+    <Row>
+      <Col xs={12} className="swipe">
         <Carousel indicators={false} interval={null} activeIndex={index} onSelect={handleSelect}>
           {values.map((value) => {
             return (
@@ -22,8 +22,8 @@ const Swipe = ({ onChange }) => {
             )
           })}
         </Carousel>
-      </div>
-    </div>
+      </Col>
+    </Row>
   )
 }
 

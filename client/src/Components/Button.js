@@ -1,12 +1,13 @@
 import React from 'react'
 import './button.css'
+import { Col } from 'react-bootstrap'
 const Button = ({ onClick, symbol, className }) => {
   return (
-    <div className={`col-6 ${className}`}>
+    <Col xs={6} className={className}>
       <button onClick={onClick} className="button">
         <span>{symbol}</span>
       </button>
-    </div>
+    </Col>
   )
 }
 

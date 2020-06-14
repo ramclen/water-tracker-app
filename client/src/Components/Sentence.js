@@ -1,9 +1,10 @@
 import React from 'react'
+import { Col } from 'react-bootstrap'
 
 const Sentence = () => {
-    return(
-        <div className="col-12 sentence"> Nice work! Keep it up!</div>
-    )
+  return (
+    <Col xs={12} className="sentence"> Nice work! Keep it up!</Col>
+  )
 }
 
 export default Sentence
