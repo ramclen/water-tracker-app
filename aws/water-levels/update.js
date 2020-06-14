@@ -9,7 +9,7 @@ module.exports.update = (event, context, callback) => {
   const data = JSON.parse(event.body);
 
   // validating the received object
-  if (typeof data.level !== 'number') {
+  if (typeof data.level !== 'number' || typeof data.maxLevel !== 'number') {
     console.error('Validation Failed');
     callback(null, {
       statusCode: 400,
@@ -19,7 +19,7 @@ module.exports.update = (event, context, callback) => {
     return;
   }
 
-  const params = createParams(event.pathParameters.id, data.level);
+  const params = createParams(event.pathParameters.id, data);
 
   dynamoDb.update(params, (error, result) => {
     // handle potential errors
@@ -45,10 +45,10 @@ module.exports.update = (event, context, callback) => {
 /**
  * It returns an params object to update the item in DynamoDB
  * @param  {string} id
- * @param  {number} level
+ * @param  {object} data
  * @returns {Object} 
  */
-function createParams(id, level) {
+function createParams(id, data) {
   const timestamp = new Date().getTime();
   return {
     TableName: process.env.DYNAMODB_TABLE,
@@ -57,12 +57,14 @@ function createParams(id, level) {
     },
     ExpressionAttributeNames: {
       '#water_level': 'level',
+      '#max_level': 'maxLevel',
     },
     ExpressionAttributeValues: {
-      ':level': level,
+      ':level': data.level,
+      ':maxLevel': data.maxLevel,
       ':updatedAt': timestamp,
     },
-    UpdateExpression: 'SET #water_level = :level, updatedAt = :updatedAt',
+    UpdateExpression: 'SET #water_level = :level, #max_level = :maxLevel, updatedAt = :updatedAt',
     ReturnValues: 'ALL_NEW',
   };
 }
