@@ -24,7 +24,7 @@ class App extends React.Component {
     return (
       <div className="container-fluid app">
         <div className="row header">
-          <TotalWater />
+          <TotalWater total={this.state.total} />
           <Achivements />
         </div>
         <Body />
