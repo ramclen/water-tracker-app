@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 import './modal.css'
 
-const EditMaxLevelModal = ({ open, onClose }) => {
+const EditMaxLevelModal = ({ open, value, onClose, onUpdate }) => {
+  const [maxValue, setMaxValue] = useState(value);
+  
+  const onClickUpdate = ()=> {
+    onUpdate(maxValue)
+  }
 
   return ReactDOM.createPortal((
     <>
@@ -19,6 +24,8 @@ const EditMaxLevelModal = ({ open, onClose }) => {
           
         <InputGroup className="mb-3">
             <FormControl
+              value={maxValue}
+              onChange={form => setMaxValue(form.target.value)}
               placeholder="Recipient's username"
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
@@ -27,7 +34,7 @@ const EditMaxLevelModal = ({ open, onClose }) => {
               <InputGroup.Text id="basic-addon2">ml</InputGroup.Text>
             </InputGroup.Append>
           </InputGroup>
-          <Button variant="primary" onClick={onClose}>
+          <Button variant="primary" onClick={onClickUpdate}>
             Update
           </Button>
         </Modal.Footer>

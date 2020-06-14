@@ -4,12 +4,10 @@ import Achivements from './Achivements';
 import Body from './Body'
 import Sentence from './Sentence'
 import IncrementButtons from './IncrementButtons';
-import { render } from 'react-dom';
 
 class App extends React.Component {
   state = {
-    total: 0,
-    maximum: 3500
+    total: 0
   }
 
   executeNewAmount = (amount) => {
@@ -27,7 +25,7 @@ class App extends React.Component {
           <TotalWater total={this.state.total} />
           <Achivements />
         </div>
-        <Body />
+        <Body totalDrink={this.state.total} />
         <div className="row">
           <Sentence />
         </div>
