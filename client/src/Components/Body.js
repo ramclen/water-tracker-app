@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import EditMaxLevelModal from "./EditMaxLevelModal";
 import BodyProgress from './BodyProgress';
-import aws from '../api/aws';
-
-
+import { GoPencil } from "react-icons/go";
+import './body.css';
 
 const Body = ({ totalDrink, maxValue, maxValueChange }) => {
   const [open, setOpen] = useState(false);
@@ -42,7 +41,7 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
       </div>
       <div className="col-3">
         {maxValue / 1000} L
-        <p onClick={() => setOpen(true)} >Pencil</p>
+        <GoPencil className="editButton" onClick={() => setOpen(true)} />
       </div>
     </div >
   )
