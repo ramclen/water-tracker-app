@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './Components/App';
-import Modal from './Components/Modal';
+import EditMaxLevelModal from './Components/EditMaxLevelModal';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );
 
-ReactDOM.createPortal(<Modal />, document.getElementById("modal"));
+ReactDOM.createPortal(<EditMaxLevelModal />, document.getElementById("modal"));
 
 serviceWorker.unregister();
