@@ -36,7 +36,7 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
   return (
     <div className="row manBody">
       {renderModal()}
-      <div className="col-6 offset-3" style={{ height: "100%" }} >
+      <div className="col-6 offset-3 body-box" >
         <BodyProgress percentage={calculateWaterPercentage()} />
       </div>
       <div className="col-3">
