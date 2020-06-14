@@ -63,7 +63,7 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
       <div className="col-6 offset-3 body-box" >
         <BodyProgress percentage={percentage} />
       </div>
-      <div className="col-3">
+      <div className="col-3 max-value-text">
         {maxValue / 1000} L
         <GoPencil className="editButton" onClick={() => setOpen(true)} />
       </div>

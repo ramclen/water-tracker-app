@@ -6,3 +6,7 @@
 .body-box {
   height: 100%;
 }
+
+.max-value-text {
+  font-weight: bold;
+}
