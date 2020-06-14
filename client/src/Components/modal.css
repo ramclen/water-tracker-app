@@ -1,0 +1,56 @@
+.modal {
+  color: #53c0ef;
+  text-align: center;
+}
+
+.modal-header {
+  border: none;
+  color: #53c0ef;
+}
+
+.modal-title {
+  width: 100%;
+}
+
+.modal-header span {
+  color: #53c0ef;
+}
+
+.modal-body {
+  border: none;
+  margin: 0 40px;
+}
+
+.modal-footer {
+  border: none;
+  margin: 0 40px;
+}
+
+.modal-footer .btn-primary {
+  width: 100%;
+  background-color: #53c0ef;
+  border-color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.modal .input-group {
+  border-right: none;
+}
+
+.modal .input-group input {
+  border-right: none;
+  border-color: #53c0ef;
+  color: #53c0ef;
+}
+
+.modal .input-group-append {
+  border-left: none;
+}
+
+.modal .input-group-append span {
+  color: #53c0ef;
+  border-color: #53c0ef;
+  background-color: white;
+  padding-right: 40px;
+}
