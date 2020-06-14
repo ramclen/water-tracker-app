@@ -9,7 +9,8 @@ import aws from '../api/aws';
 class App extends React.Component {
   state = {
     id: 0,
-    level: 0
+    level: 0,
+    maxLevel: 0
   }
 
   componentDidMount() {
@@ -25,7 +26,12 @@ class App extends React.Component {
       level = 0;
     }
     this.setState({ level });
-    aws.put(`water-levels/${this.state.id}`, { level: this.state.level })
+    aws.put(`water-levels/${this.state.id}`, { level: this.state.level, maxLevel: this.state.maxLevel })
+  }
+
+  maxValueChange = (maxLevel) => {
+    this.setState({ maxLevel })
+    aws.put(`water-levels/${this.state.id}`, { level: this.state.level, maxLevel: this.state.maxLevel })
   }
 
   render() {
@@ -35,7 +41,11 @@ class App extends React.Component {
           <TotalWater total={this.state.level} />
           <Achivements />
         </div>
-        <Body totalDrink={this.state.level} />
+        <Body
+          totalDrink={this.state.level}
+          maxValue={this.state.maxLevel}
+          maxValueChange={this.maxValueChange}
+        />
         <div className="row">
           <Sentence />
         </div>

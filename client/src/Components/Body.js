@@ -1,34 +1,44 @@
 import React, { useState, useEffect } from 'react'
 import EditMaxLevelModal from "./EditMaxLevelModal";
 import BodyProgress from './BodyProgress';
+import aws from '../api/aws';
 
 
 
-const Body = ({ totalDrink }) => {
+const Body = ({ totalDrink, maxValue, maxValueChange }) => {
   const [open, setOpen] = useState(false);
-  const [maxValue, setMaxValue] = useState(3500);
 
   const updateMaxValue = value => {
-    setMaxValue(value)
+    maxValueChange(parseInt(value))
     setOpen(false);
   }
 
+  const calculateWaterPercentage = () => {
+    if (maxValue === 0) {
+      return 100;
+    }
+    return (totalDrink * 100) / maxValue
+  }
 
-  useEffect(() => {
-
-  }, [])
+  const renderModal = () => {
+    if (open) {
+      return (
+        <EditMaxLevelModal
+          value={maxValue}
+          open={open}
+          onClose={() => setOpen(false)}
+          onUpdate={updateMaxValue}
+        />
+      )
+    }
+    return null;
+  }
 
   return (
     <div className="row manBody">
-      <EditMaxLevelModal
-        value={maxValue}
-        open={open}
-        onClose={() => setOpen(false)}
-        onUpdate={updateMaxValue}
-      />
-
+      {renderModal()}
       <div className="col-9" style={{ height: "100%" }} >
-        <BodyProgress percentage={(totalDrink * 100) / maxValue} />
+        <BodyProgress percentage={calculateWaterPercentage()} />
       </div>
       <div className="col-3">
         {maxValue / 1000} L

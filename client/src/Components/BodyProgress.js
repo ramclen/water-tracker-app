@@ -3,7 +3,7 @@ import React from "react";
 const BodyProgress = (props) => {
   return (
     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-      height="100%" viewBox="0 0 206.326 206.326" style={{ enableBackground: "new 0 0 206.326 206.326" }}
+      height="100%" width="100%" viewBox="0 0 206.326 206.326" style={{ enableBackground: "new 0 0 206.326 206.326" }}
       space="preserve">
       <defs>
         <linearGradient id="progress" x1="0" y1="1" x2="0" y2="0">
