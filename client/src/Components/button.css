@@ -1,3 +1,7 @@
+.button:focus {
+  outline: none;
+}
+
 .button {
   line-height: 0.3;
   border: 3px solid #ffffff;
