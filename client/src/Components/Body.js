@@ -18,7 +18,6 @@ const Body = ({ totalDrink }) => {
 
   }, [])
 
-
   return (
     <div className="row manBody">
       <EditMaxLevelModal
@@ -28,14 +27,14 @@ const Body = ({ totalDrink }) => {
         onUpdate={updateMaxValue}
       />
 
-      <div className="col-9 body-water" >
+      <div className="col-9" style={{ height: "100%" }} >
         <BodyProgress percentage={(totalDrink * 100) / maxValue} />
       </div>
       <div className="col-3">
         {maxValue / 1000} L
         <p onClick={() => setOpen(true)} >Pencil</p>
       </div>
-    </div>
+    </div >
   )
 }
 
