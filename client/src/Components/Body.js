@@ -9,12 +9,23 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
   const [open, setOpen] = useState(false);
   const [percentage, setPercentage] = useState(totalDrink);
 
+  useEffect(() => {
+    // initialize previous previous total drink 
+    previousTotalDrink = totalDrink;
+  }, [])
+
+  useEffect(() => {
+    // Increasing percentage gradually to show an animation
+    percentageIncreaseAnimation();
+  }, [totalDrink])
+
   const updateMaxValue = value => {
     maxValueChange(parseInt(value))
     setOpen(false);
   }
 
   const percentageIncreaseAnimation = () => {
+    // Increment is dependant on the max value to keep speed if maxValue change
     previousTotalDrink += (25000 / maxValue);
     setPercentage(calculateWaterPercentage(previousTotalDrink))
 
@@ -24,14 +35,6 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
       previousTotalDrink = totalDrink
     }
   }
-
-  useEffect(() => {
-    previousTotalDrink = totalDrink;
-  }, [])
-
-  useEffect(() => {
-    percentageIncreaseAnimation();
-  }, [totalDrink])
 
   const calculateWaterPercentage = (value) => {
     if (maxValue === 0) {
