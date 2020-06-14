@@ -3,20 +3,41 @@ import EditMaxLevelModal from "./EditMaxLevelModal";
 import BodyProgress from './BodyProgress';
 import { GoPencil } from "react-icons/go";
 import './body.css';
+let previousTotalDrink;
 
 const Body = ({ totalDrink, maxValue, maxValueChange }) => {
   const [open, setOpen] = useState(false);
+  const [percentage, setPercentage] = useState(totalDrink);
 
   const updateMaxValue = value => {
     maxValueChange(parseInt(value))
     setOpen(false);
   }
 
-  const calculateWaterPercentage = () => {
+  const percentageIncreaseAnimation = () => {
+    previousTotalDrink += (25000 / maxValue);
+    setPercentage(calculateWaterPercentage(previousTotalDrink))
+
+    if (totalDrink > previousTotalDrink) {
+      requestAnimationFrame(percentageIncreaseAnimation);
+    } else {
+      previousTotalDrink = totalDrink
+    }
+  }
+
+  useEffect(() => {
+    previousTotalDrink = totalDrink;
+  }, [])
+
+  useEffect(() => {
+    percentageIncreaseAnimation();
+  }, [totalDrink])
+
+  const calculateWaterPercentage = (value) => {
     if (maxValue === 0) {
       return 100;
     }
-    return (totalDrink * 100) / maxValue
+    return (value * 100) / maxValue
   }
 
   const renderModal = () => {
@@ -37,7 +58,7 @@ const Body = ({ totalDrink, maxValue, maxValueChange }) => {
     <div className="row manBody">
       {renderModal()}
       <div className="col-6 offset-3 body-box" >
-        <BodyProgress percentage={calculateWaterPercentage()} />
+        <BodyProgress percentage={percentage} />
       </div>
       <div className="col-3">
         {maxValue / 1000} L
