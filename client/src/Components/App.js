@@ -4,28 +4,38 @@ import Achivements from './Achivements';
 import Body from './Body'
 import Sentence from './Sentence'
 import IncrementButtons from './IncrementButtons';
+import aws from '../api/aws';
 
 class App extends React.Component {
   state = {
-    total: 0
+    id: 0,
+    level: 0
+  }
+
+  componentDidMount() {
+    aws.get('water-levels').then(result => {
+      this.setState(result.data)
+    })
+    // TODO: Control errors 
   }
 
   executeNewAmount = (amount) => {
-    let total = this.state.total + amount;
-    if (total < 0) {
-      total = 0;
+    let level = this.state.level + amount;
+    if (level < 0) {
+      level = 0;
     }
-    this.setState({ total })
+    this.setState({ level });
+    aws.put(`water-levels/${this.state.id}`, { level: this.state.level })
   }
 
   render() {
     return (
       <div className="container-fluid app">
         <div className="row header">
-          <TotalWater total={this.state.total} />
+          <TotalWater total={this.state.level} />
           <Achivements />
         </div>
-        <Body totalDrink={this.state.total} />
+        <Body totalDrink={this.state.level} />
         <div className="row">
           <Sentence />
         </div>
