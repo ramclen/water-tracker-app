@@ -27,14 +27,14 @@ class App extends React.Component {
       level = 0;
     }
     this.setState({ level });
-    aws.put(`water-levels/${this.state.id}`, { level: this.state.level, targetLevel: this.state.targetLevel }).catch(e => {
+    aws.put(`water-levels/${this.state.id}`, { level: level, targetLevel: this.state.targetLevel }).catch(e => {
       console.error('Error requesting an update for a level change: ', e)
     })
   }
 
   targetValueChange = (targetLevel) => {
     this.setState({ targetLevel })
-    aws.put(`water-levels/${this.state.id}`, { level: this.state.level, targetLevel: this.state.targetLevel }).catch(e => {
+    aws.put(`water-levels/${this.state.id}`, { level: this.state.level, targetLevel: targetLevel }).catch(e => {
       console.error('Error requesting an update for a target value change: ', e)
     })
   }

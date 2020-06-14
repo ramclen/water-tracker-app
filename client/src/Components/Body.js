@@ -56,6 +56,8 @@ const Body = ({ totalDrink, targetValue, targetValueChange }) => {
 
   const updateTargetValue = value => {
     targetValueChange(parseInt(value))
+    // setting the percentage to update the body progress component
+    setPercentage((totalDrink * 100) / value);
     setOpen(false);
   }
 
