@@ -1,0 +1,9 @@
+.button {
+  line-height: 0.3;
+  border: 3px solid #ffffff;
+}
+
+.button span {
+  font-size: 40px;
+  font-weight: bolder;
+}
