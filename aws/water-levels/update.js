@@ -9,7 +9,7 @@ module.exports.update = (event, context, callback) => {
   const data = JSON.parse(event.body);
 
   // validating the received object
-  if (typeof data.level !== 'string') {
+  if (typeof data.level !== 'number') {
     console.error('Validation Failed');
     callback(null, {
       statusCode: 400,
@@ -45,7 +45,7 @@ module.exports.update = (event, context, callback) => {
 /**
  * It returns an params object to update the item in DynamoDB
  * @param  {string} id
- * @param  {string} level
+ * @param  {number} level
  * @returns {Object} 
  */
 function createParams(id, level) {

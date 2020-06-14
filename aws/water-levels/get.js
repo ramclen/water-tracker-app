@@ -58,7 +58,7 @@ function createNewLevel(callback) {
     TableName: process.env.DYNAMODB_TABLE,
     Item: {
       id: uuid.v1(),
-      level: "0",
+      level: 0,
       createdAt: timestamp,
       updatedAt: timestamp,
     },
