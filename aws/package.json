@@ -1,0 +1,9 @@
+{
+  "name": "water-levels",
+  "version": "1.0.0",
+  "description": "",
+  "author": "ramclen",
+  "dependencies": {
+    "uuid": "^2.0.3"
+  }
+}
