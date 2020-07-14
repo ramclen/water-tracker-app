@@ -41,8 +41,9 @@ const Body = ({ totalDrink, targetValue, targetValueChange }) => {
   }
 
   useEffect(() => {
-    // initialize previous previous total drink 
+    // initialize previous previous total drink
     previousTotalDrink = totalDrink;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const Body = ({ totalDrink, targetValue, targetValueChange }) => {
     } else {
       percentageDecreaseAnimation()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [totalDrink])
 
   const updateTargetValue = value => {
