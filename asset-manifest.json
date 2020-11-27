@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/water-tracker-app/static/css/main.a8b5cab2.chunk.css",
+    "main.js": "/water-tracker-app/static/js/main.10012cf1.chunk.js",
+    "main.js.map": "/water-tracker-app/static/js/main.10012cf1.chunk.js.map",
+    "runtime-main.js": "/water-tracker-app/static/js/runtime-main.b339009d.js",
+    "runtime-main.js.map": "/water-tracker-app/static/js/runtime-main.b339009d.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/water-tracker-app/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.c7e508cd.chunk.js": "/water-tracker-app/static/js/2.c7e508cd.chunk.js",
+    "static/js/2.c7e508cd.chunk.js.map": "/water-tracker-app/static/js/2.c7e508cd.chunk.js.map",
+    "index.html": "/water-tracker-app/index.html",
+    "precache-manifest.8c49eaa1b5e8fd8d6bcffc8f21e0921f.js": "/water-tracker-app/precache-manifest.8c49eaa1b5e8fd8d6bcffc8f21e0921f.js",
+    "service-worker.js": "/water-tracker-app/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/water-tracker-app/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.a8b5cab2.chunk.css.map": "/water-tracker-app/static/css/main.a8b5cab2.chunk.css.map",
+    "static/js/2.c7e508cd.chunk.js.LICENSE.txt": "/water-tracker-app/static/js/2.c7e508cd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b339009d.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.c7e508cd.chunk.js",
+    "static/css/main.a8b5cab2.chunk.css",
+    "static/js/main.10012cf1.chunk.js"
+  ]
+}
